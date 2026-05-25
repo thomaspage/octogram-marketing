@@ -1,2 +1,5 @@
+# Named pages
+/privacy  /privacy/index.html  200
+
 # Catch-all: serve index.html for any unmatched paths
 /*  /index.html  200

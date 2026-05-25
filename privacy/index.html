@@ -38,7 +38,7 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(20px);
       background: rgba(10, 14, 20, 0.8);
@@ -62,7 +62,7 @@
 
     /* ── PAGE ── */
     .page-header {
-      padding: 120px 0 56px;
+      padding: 64px 0 56px;
       border-bottom: 1px solid var(--border);
     }
     .page-eyebrow {
@@ -130,7 +130,7 @@
     .footer-copy { font-size: 13px; color: var(--ink-soft); }
 
     @media (max-width: 600px) {
-      .page-header { padding: 100px 0 40px; }
+      .page-header { padding: 48px 0 40px; }
     }
   </style>
 </head>

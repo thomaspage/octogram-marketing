@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx serve . -l 3000",
     "preview": "npx serve . -l 3000",
-    "deploy": "npx wrangler pages deploy . --project-name decagram-marketing"
+    "deploy": "npx wrangler pages deploy"
   },
   "devDependencies": {
     "serve": "^14.2.3",

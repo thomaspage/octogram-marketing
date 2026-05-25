@@ -1,6 +1,6 @@
 # decagram-marketing
 
-Static marketing site for [Decagram](https://decagram.app) — a word-finding game for iOS and Android.
+Static marketing site for [Decagram](https://decagram.ca) — a word-finding game for iOS and Android.
 
 Hosted on Cloudflare Pages. No build step required; the root directory is the deploy artifact.
 

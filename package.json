@@ -1,0 +1,14 @@
+{
+  "name": "decagram-marketing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "preview": "npx serve . -l 3000",
+    "deploy": "npx wrangler pages deploy . --project-name decagram-marketing"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3",
+    "wrangler": "^3.0.0"
+  }
+}

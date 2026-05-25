@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decagram — Word Game</title>
+  <meta name="description" content="Swipe through a grid of letters, chain words, and race the clock. Four unique modes. One obsession." />
+  <meta property="og:title" content="Decagram — Word Game" />
+  <meta property="og:description" content="Swipe through a grid of letters, chain words, and race the clock. Four unique modes. One obsession." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:      #00BFFF;
+      --accent-deep: #0090CC;
+      --warn:        #F59E0B;
+      --warn-deep:   #D97706;
+      --bad:         #EF4444;
+      --bad-deep:    #DC2626;
+      --good:        #22C55E;
+      --good-deep:   #16A34A;
+      --bg:          #0A0E14;
+      --bg-card:     #141922;
+      --bg-elev:     #1C2333;
+      --ink:         #F0F4FF;
+      --ink-soft:    #8B95B0;
+      --border:      rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(10, 14, 20, 0.8);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo-mark {
+      width: 32px; height: 32px;
+    }
+    .nav-logo-text {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
+    }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #000;
+      font-size: 14px; font-weight: 600; padding: 8px 18px;
+      border-radius: 100px; text-decoration: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(0,191,255,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0,191,255,0.1); border: 1px solid rgba(0,191,255,0.25);
+      color: var(--accent); font-size: 13px; font-weight: 600;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(0.75); }
+    }
+    .hero h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), #80DFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(18px, 2.5vw, 22px);
+      color: var(--ink-soft);
+      max-width: 520px; margin: 0 auto 44px;
+      line-height: 1.6;
+    }
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: #000;
+      font-size: 16px; font-weight: 700; padding: 14px 28px;
+      border-radius: 100px; text-decoration: none;
+      transition: opacity .15s, transform .15s, box-shadow .15s;
+      box-shadow: 0 0 40px rgba(0,191,255,0.35);
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 0 60px rgba(0,191,255,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--bg-card); color: var(--ink);
+      font-size: 16px; font-weight: 600; padding: 14px 28px;
+      border-radius: 100px; text-decoration: none;
+      border: 1px solid var(--border);
+      transition: background .15s, transform .15s;
+    }
+    .btn-secondary:hover { background: var(--bg-elev); transform: translateY(-2px); }
+    .store-icon { width: 20px; height: 20px; }
+
+    /* ── GRID DEMO ── */
+    .grid-demo-section {
+      padding: 20px 0 80px;
+      display: flex; justify-content: center;
+    }
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 4px;
+      max-width: 360px; width: 100%;
+      user-select: none;
+    }
+    .grid-cell {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: clamp(10px, 2.2vw, 14px);
+      font-weight: 700;
+      color: var(--ink-soft);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .grid-cell.highlighted {
+      background: rgba(0,191,255,0.18);
+      border-color: rgba(0,191,255,0.5);
+      color: var(--accent);
+    }
+    .grid-cell.path {
+      background: rgba(0,191,255,0.08);
+      border-color: rgba(0,191,255,0.25);
+      color: rgba(0,191,255,0.7);
+    }
+
+    /* ── STATS BANNER ── */
+    .stats-banner {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 0;
+      background: linear-gradient(180deg, rgba(0,191,255,0.03) 0%, transparent 100%);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px; text-align: center;
+    }
+    .stat-value {
+      font-size: 40px; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--ink), var(--ink-soft));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+
+    /* ── MODES ── */
+    .modes-section { padding: 100px 0; }
+    .section-eyebrow {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent); margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900; letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 18px; color: var(--ink-soft);
+      max-width: 520px; line-height: 1.65; margin-bottom: 56px;
+    }
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .mode-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative; overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .mode-card:hover { transform: translateY(-4px); }
+    .mode-card-glow {
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      opacity: 0.12;
+      filter: blur(40px);
+    }
+    .mode-icon {
+      width: 52px; height: 52px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; font-size: 24px;
+    }
+    .mode-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .mode-blurb { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; }
+    .mode-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .mode-chip {
+      font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 100px;
+      background: rgba(255,255,255,0.06);
+      color: var(--ink-soft);
+    }
+
+    /* Classic */
+    .mode-card.classic { border-color: rgba(0,191,255,0.2); }
+    .mode-card.classic:hover { border-color: rgba(0,191,255,0.4); }
+    .mode-card.classic .mode-card-glow { background: var(--accent); }
+    .mode-card.classic .mode-icon { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+    .mode-card.classic .mode-name { color: var(--accent); }
+    /* Daily */
+    .mode-card.daily { border-color: rgba(245,158,11,0.2); }
+    .mode-card.daily:hover { border-color: rgba(245,158,11,0.4); }
+    .mode-card.daily .mode-card-glow { background: var(--warn); }
+    .mode-card.daily .mode-icon { background: linear-gradient(135deg, var(--warn), var(--warn-deep)); }
+    .mode-card.daily .mode-name { color: var(--warn); }
+    /* Rush */
+    .mode-card.rush { border-color: rgba(239,68,68,0.2); }
+    .mode-card.rush:hover { border-color: rgba(239,68,68,0.4); }
+    .mode-card.rush .mode-card-glow { background: var(--bad); }
+    .mode-card.rush .mode-icon { background: linear-gradient(135deg, var(--bad), var(--bad-deep)); }
+    .mode-card.rush .mode-name { color: var(--bad); }
+    /* Zen */
+    .mode-card.zen { border-color: rgba(34,197,94,0.2); }
+    .mode-card.zen:hover { border-color: rgba(34,197,94,0.4); }
+    .mode-card.zen .mode-card-glow { background: var(--good); }
+    .mode-card.zen .mode-icon { background: linear-gradient(135deg, var(--good), var(--good-deep)); }
+    .mode-card.zen .mode-name { color: var(--good); }
+
+    /* ── SCORING ── */
+    .scoring-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, transparent, rgba(0,191,255,0.03) 50%, transparent);
+    }
+    .scoring-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    @media (max-width: 768px) {
+      .scoring-split { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .scoring-visual {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .word-score-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 18px;
+      transition: transform .15s;
+    }
+    .word-score-row:hover { transform: translateX(4px); }
+    .word-letters { display: flex; gap: 4px; }
+    .word-letter {
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-elev); border-radius: 6px;
+      font-size: 12px; font-weight: 700; color: var(--ink);
+    }
+    .word-score {
+      font-size: 18px; font-weight: 800;
+      color: var(--accent);
+    }
+    .word-length-bonus {
+      font-size: 11px; color: var(--ink-soft); margin-top: 2px;
+    }
+
+    /* ── LANGUAGES ── */
+    .languages-section { padding: 100px 0; }
+    .lang-grid {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-top: 40px;
+    }
+    .lang-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 12px 20px; border-radius: 100px;
+      transition: border-color .15s, transform .15s;
+    }
+    .lang-pill:hover { border-color: rgba(0,191,255,0.3); transform: translateY(-2px); }
+    .lang-flag { font-size: 22px; }
+    .lang-name { font-size: 15px; font-weight: 600; }
+    .lang-sub { font-size: 12px; color: var(--ink-soft); }
+
+    /* ── LEADERBOARD TEASER ── */
+    .leaderboard-section { padding: 100px 0; }
+    .leaderboard-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 480px;
+    }
+    .lb-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .lb-title { font-size: 16px; font-weight: 700; }
+    .lb-mode-badge {
+      font-size: 12px; font-weight: 600;
+      padding: 4px 12px; border-radius: 100px;
+      background: rgba(0,191,255,0.1); color: var(--accent);
+      border: 1px solid rgba(0,191,255,0.25);
+    }
+    .lb-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-rank {
+      width: 24px; text-align: center;
+      font-size: 13px; font-weight: 700; color: var(--ink-soft);
+    }
+    .lb-rank.gold { color: #F59E0B; }
+    .lb-rank.silver { color: #94A3B8; }
+    .lb-rank.bronze { color: #C2855C; }
+    .lb-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .lb-name { flex: 1; font-size: 14px; font-weight: 600; }
+    .lb-score { font-size: 15px; font-weight: 800; color: var(--accent); }
+    .lb-words { font-size: 12px; color: var(--ink-soft); }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 120px 0;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,191,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900; letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+    .cta-section p { font-size: 20px; color: var(--ink-soft); margin-bottom: 44px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700;
+      color: var(--ink-soft); text-decoration: none;
+    }
+    .footer-links {
+      display: flex; gap: 24px;
+    }
+    .footer-links a {
+      font-size: 14px; color: var(--ink-soft); text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-size: 13px; color: var(--ink-soft); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 120px 0 80px; }
+      .hero h1 { letter-spacing: -2px; }
+      .modes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Decagram home">
+        <svg class="nav-logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="url(#ng)" />
+          <defs>
+            <linearGradient id="ng" x1="3.5" y1="2" x2="28.5" y2="31" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00BFFF"/>
+              <stop offset="1" stop-color="#0090CC"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="nav-logo-text">Decagram</span>
+      </a>
+      <a href="#download" class="nav-cta">
+        Download
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7l-5 5zm-5 2h10v2H3v-2z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-badge-dot" aria-hidden="true"></span>
+      Free to play · iOS &amp; Android
+    </div>
+    <h1>Words, wired<br />for <em>speed.</em></h1>
+    <p class="hero-sub">
+      Swipe through a 10×10 grid of letters, chain words, and race the clock.
+      Four modes. Six languages. One daily obsession.
+    </p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary" id="download">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        App Store
+      </a>
+      <a href="#download" class="btn-secondary">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5zm2-13.27V16.8l9.58-5.65L5 7.23z"/>
+        </svg>
+        Google Play
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── GRID DEMO ── -->
+<section class="grid-demo-section" aria-label="Interactive letter grid preview">
+  <div class="grid-demo" id="gridDemo" role="img" aria-label="Sample Decagram letter grid"></div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats-banner" aria-label="App statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-value">10×10</div>
+        <div class="stat-label">Letter grid</div>
+      </div>
+      <div>
+        <div class="stat-value">4</div>
+        <div class="stat-label">Game modes</div>
+      </div>
+      <div>
+        <div class="stat-value">6</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div>
+        <div class="stat-value">∞</div>
+        <div class="stat-label">Daily boards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MODES ── -->
+<section class="modes-section">
+  <div class="container">
+    <p class="section-eyebrow">Game Modes</p>
+    <h2 class="section-title">Pick your pace.</h2>
+    <p class="section-sub">Four distinct modes let you play at a sprint, a marathon, or no pace at all.</p>
+
+    <div class="modes-grid">
+      <!-- Classic -->
+      <div class="mode-card classic">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Classic</div>
+        <p class="mode-blurb">Start at 60 seconds. Find words to add time. Play until the clock runs out.</p>
+        <div class="mode-chips">
+          <span class="mode-chip">60s start</span>
+          <span class="mode-chip">Time boost</span>
+          <span class="mode-chip">Ranked</span>
+        </div>
+      </div>
+
+      <!-- Daily -->
+      <div class="mode-card daily">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Daily</div>
+        <p class="mode-blurb">A new board every day. Same letters for everyone. One run only.</p>
+        <div class="mode-chips">
+          <span class="mode-chip">90s start</span>
+          <span class="mode-chip">Time boost</span>
+          <span class="mode-chip">Ranked</span>
+        </div>
+      </div>
+
+      <!-- Rush -->
+      <div class="mode-card rush">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Rush</div>
+        <p class="mode-blurb">60 seconds, no extensions. How many points can you bank?</p>
+        <div class="mode-chips">
+          <span class="mode-chip">60s fixed</span>
+          <span class="mode-chip">No boosts</span>
+          <span class="mode-chip">Ranked</span>
+        </div>
+      </div>
+
+      <!-- Zen -->
+      <div class="mode-card zen">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 3a7 7 0 110 14A7 7 0 0112 5zm0 3a4 4 0 100 8 4 4 0 000-8z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Zen</div>
+        <p class="mode-blurb">No timer, no pressure. Just letters and words.</p>
+        <div class="mode-chips">
+          <span class="mode-chip">No timer</span>
+          <span class="mode-chip">Practice</span>
+          <span class="mode-chip">Unranked</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCORING ── -->
+<section class="scoring-section">
+  <div class="container">
+    <div class="scoring-split">
+      <div>
+        <p class="section-eyebrow">Scoring System</p>
+        <h2 class="section-title">Longer words.<br />Bigger points.</h2>
+        <p class="section-sub">
+          Every word scores letter points (like Scrabble) amplified by a length multiplier.
+          A 7-letter word is worth ~5× more than a 4-letter one. Rare letters — J, Q, X, Z — pay dividends.
+        </p>
+        <p class="section-sub" style="margin-bottom: 0;">
+          In timed modes, each word you find also <strong style="color:var(--ink)">adds seconds back</strong> to the clock. Longer words add more — a 9-letter word buys you a full minute.
+        </p>
+      </div>
+      <div class="scoring-visual" aria-label="Sample word scores">
+        <div class="word-score-row">
+          <div>
+            <div class="word-letters">
+              <span class="word-letter">C</span><span class="word-letter">A</span><span class="word-letter">T</span>
+            </div>
+            <div class="word-length-bonus">3 letters · +3s</div>
+          </div>
+          <div class="word-score" aria-label="6 points">6 pts</div>
+        </div>
+        <div class="word-score-row">
+          <div>
+            <div class="word-letters">
+              <span class="word-letter">W</span><span class="word-letter">O</span><span class="word-letter">R</span><span class="word-letter">D</span><span class="word-letter">S</span>
+            </div>
+            <div class="word-length-bonus">5 letters · +10s</div>
+          </div>
+          <div class="word-score" aria-label="28 points">28 pts</div>
+        </div>
+        <div class="word-score-row">
+          <div>
+            <div class="word-letters">
+              <span class="word-letter">P</span><span class="word-letter">L</span><span class="word-letter">A</span><span class="word-letter">Y</span><span class="word-letter">I</span><span class="word-letter">N</span><span class="word-letter">G</span>
+            </div>
+            <div class="word-length-bonus">7 letters · +25s</div>
+          </div>
+          <div class="word-score" aria-label="62 points">62 pts</div>
+        </div>
+        <div class="word-score-row">
+          <div>
+            <div class="word-letters">
+              <span class="word-letter">Q</span><span class="word-letter">U</span><span class="word-letter">I</span><span class="word-letter">C</span><span class="word-letter">K</span><span class="word-letter">L</span><span class="word-letter">Y</span>
+            </div>
+            <div class="word-length-bonus">7 letters · Q bonus · +25s</div>
+          </div>
+          <div class="word-score" aria-label="142 points">142 pts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LANGUAGES ── -->
+<section class="languages-section">
+  <div class="container">
+    <p class="section-eyebrow">Languages</p>
+    <h2 class="section-title">Play in your language.</h2>
+    <p class="section-sub">Full dictionary support with language-aware letter scoring.</p>
+    <div class="lang-grid">
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇺🇸</span>
+        <div><div class="lang-name">English</div><div class="lang-sub">Default</div></div>
+      </div>
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇫🇷</span>
+        <div><div class="lang-name">Français</div><div class="lang-sub">French</div></div>
+      </div>
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇪🇸</span>
+        <div><div class="lang-name">Español</div><div class="lang-sub">Spanish</div></div>
+      </div>
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇩🇪</span>
+        <div><div class="lang-name">Deutsch</div><div class="lang-sub">German</div></div>
+      </div>
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇮🇹</span>
+        <div><div class="lang-name">Italiano</div><div class="lang-sub">Italian</div></div>
+      </div>
+      <div class="lang-pill">
+        <span class="lang-flag" aria-hidden="true">🇧🇷</span>
+        <div><div class="lang-name">Português</div><div class="lang-sub">Portuguese</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEADERBOARD ── -->
+<section class="leaderboard-section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+      <div>
+        <p class="section-eyebrow">Leaderboard</p>
+        <h2 class="section-title">Prove yourself.</h2>
+        <p class="section-sub" style="margin-bottom:0;">
+          Every Classic and Daily run is ranked. Sign in once to claim a username and your scores are permanent. Daily boards reset at midnight — one shot per day to top the chart.
+        </p>
+      </div>
+      <div class="leaderboard-card">
+        <div class="lb-header">
+          <span class="lb-title">Today's Daily</span>
+          <span class="lb-mode-badge">Daily</span>
+        </div>
+        <div class="lb-row">
+          <span class="lb-rank gold">🥇</span>
+          <div class="lb-avatar" style="background:rgba(245,158,11,0.15);color:#F59E0B;">W</div>
+          <span class="lb-name">wordwizard</span>
+          <div style="text-align:right">
+            <div class="lb-score">1,842</div>
+            <div class="lb-words">34 words</div>
+          </div>
+        </div>
+        <div class="lb-row">
+          <span class="lb-rank silver">🥈</span>
+          <div class="lb-avatar" style="background:rgba(148,163,184,0.15);color:#94A3B8;">L</div>
+          <span class="lb-name">lexicon_lex</span>
+          <div style="text-align:right">
+            <div class="lb-score">1,611</div>
+            <div class="lb-words">29 words</div>
+          </div>
+        </div>
+        <div class="lb-row">
+          <span class="lb-rank bronze">🥉</span>
+          <div class="lb-avatar" style="background:rgba(194,133,92,0.15);color:#C2855C;">S</div>
+          <span class="lb-name">spellsword</span>
+          <div style="text-align:right">
+            <div class="lb-score">1,450</div>
+            <div class="lb-words">26 words</div>
+          </div>
+        </div>
+        <div class="lb-row">
+          <span class="lb-rank" style="font-size:11px;">4</span>
+          <div class="lb-avatar" style="background:rgba(0,191,255,0.15);color:var(--accent);">Y</div>
+          <span class="lb-name">you?</span>
+          <div style="text-align:right">
+            <div class="lb-score" style="color:var(--ink-soft);">—</div>
+            <div class="lb-words">play now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="download">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container">
+    <h2>Start your streak<br />today.</h2>
+    <p>Free. No ads. Just words.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        App Store
+      </a>
+      <a href="#" class="btn-secondary">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5zm2-13.27V16.8l9.58-5.65L5 7.23z"/>
+        </svg>
+        Google Play
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#00BFFF"/>
+        </svg>
+        Decagram
+      </a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="mailto:hello@decagram.app">Contact</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+      <span class="footer-copy">&copy; <span id="yr"></span> Decagram</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Render 10×10 letter grid
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const GRID = 100;
+  const grid = document.getElementById('gridDemo');
+  const cells = [];
+  const seed = [
+    'S','W','I','F','T','L','Y','Z','Q','B',
+    'P','L','A','Y','I','N','G','O','X','V',
+    'R','E','A','D','E','R','S','H','U','E',
+    'C','H','A','R','T','S','L','I','M','A',
+    'O','N','W','O','R','D','S','T','E','R',
+    'T','H','I','N','K','E','R','A','C','E',
+    'R','E','S','P','O','N','S','E','L','Y',
+    'W','R','I','T','E','R','B','L','O','G',
+    'S','T','A','C','K','S','C','O','R','E',
+    'E','X','P','L','O','R','E','D','A','Y',
+  ];
+
+  for (let i = 0; i < GRID; i++) {
+    const el = document.createElement('div');
+    el.className = 'grid-cell';
+    el.textContent = seed[i] || letters[Math.floor(Math.random() * letters.length)];
+    grid.appendChild(el);
+    cells.push(el);
+  }
+
+  // Animate highlighted words
+  const highlights = [
+    // "PLAYING" across row 1
+    [10,11,12,13,14,15,16],
+    // "WORDS" somewhere
+    [40,41,42,43,44],
+    // "THINK"
+    [50,51,52,53,54],
+    // "SCORE"
+    [85,86,87,88,89],
+  ];
+  let currentWord = 0;
+  let prev = [];
+
+  function animateWord() {
+    prev.forEach(i => { cells[i].classList.remove('highlighted','path'); });
+    const word = highlights[currentWord];
+    word.forEach((i, idx) => {
+      setTimeout(() => {
+        cells[i].classList.add(idx === word.length - 1 ? 'highlighted' : 'path');
+      }, idx * 80);
+    });
+    prev = word;
+    currentWord = (currentWord + 1) % highlights.length;
+  }
+
+  animateWord();
+  setInterval(animateWord, 2800);
+</script>
+</body>
+</html>

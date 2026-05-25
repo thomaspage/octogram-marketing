@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Decagram</title>
+  <meta name="description" content="Get help with Decagram. Find answers to common questions about scoring, game modes, accounts, and more." />
+  <link rel="canonical" href="https://decagram.ca/support" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:      #00BFFF;
+      --accent-deep: #0090CC;
+      --warn:        #F59E0B;
+      --bad:         #EF4444;
+      --good:        #22C55E;
+      --bg:          #0A0E14;
+      --bg-card:     #141922;
+      --bg-elev:     #1C2333;
+      --ink:         #F0F4FF;
+      --ink-soft:    #8B95B0;
+      --border:      rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(10, 14, 20, 0.8);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo-text { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--ink-soft);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-eyebrow {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent); margin-bottom: 14px;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .page-sub {
+      font-size: 18px; color: var(--ink-soft); line-height: 1.65;
+      max-width: 540px;
+    }
+
+    /* ── CONTACT CARDS ── */
+    .contact-section {
+      padding: 56px 0 0;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex; flex-direction: column; gap: 12px;
+      transition: border-color .15s, transform .15s;
+    }
+    .contact-card:hover { border-color: rgba(0,191,255,0.3); transform: translateY(-3px); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,191,255,0.1);
+    }
+    .contact-card-title { font-size: 16px; font-weight: 700; }
+    .contact-card-sub { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+    .contact-card-action {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      margin-top: auto;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 64px 0 100px;
+    }
+    .faq-group { margin-bottom: 52px; }
+    .faq-group-label {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .faq-list {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    details.faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color .15s;
+    }
+    details.faq-item[open] {
+      border-color: rgba(0,191,255,0.2);
+    }
+    details.faq-item summary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      gap: 16px;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--ink-soft);
+      transition: transform .2s;
+    }
+    details.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-body {
+      padding: 0 22px 20px;
+      font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .faq-body a { color: var(--accent); text-decoration: none; }
+    .faq-body a:hover { text-decoration: underline; }
+    .faq-body strong { color: var(--ink); font-weight: 600; }
+
+    /* Scoring table */
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .score-table th {
+      text-align: left;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.8px; color: var(--ink-soft);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .score-table td {
+      padding: 10px 12px;
+      font-size: 14px; color: var(--ink-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table td:first-child { font-weight: 600; color: var(--ink); }
+    .score-table td em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700;
+      color: var(--ink-soft); text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 14px; color: var(--ink-soft); text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-size: 13px; color: var(--ink-soft); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 48px 0 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Decagram home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="url(#ng)" />
+        <defs>
+          <linearGradient id="ng" x1="3.5" y1="2" x2="28.5" y2="31" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00BFFF"/>
+            <stop offset="1" stop-color="#0090CC"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-text">Decagram</span>
+    </a>
+    <a href="/" class="nav-back" aria-label="Back to home">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back
+    </a>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header class="page-header">
+  <div class="container">
+    <p class="page-eyebrow">Support</p>
+    <h1 class="page-title">How can we help?</h1>
+    <p class="page-sub">Browse answers to common questions, or reach out directly — we're a small team and we read everything.</p>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+  <div class="container">
+
+    <!-- Contact cards -->
+    <section class="contact-section" aria-label="Contact options">
+      <div class="contact-grid">
+        <a href="mailto:hello@decagram.ca" class="contact-card">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <div class="contact-card-title">Email us</div>
+          <div class="contact-card-sub">For bugs, account issues, or anything else that needs a human.</div>
+          <span class="contact-card-action">
+            hello@decagram.ca
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </span>
+        </a>
+        <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+          </div>
+          <div class="contact-card-title">Rate on App Store</div>
+          <div class="contact-card-sub">Enjoying the game? A review means the world to a small indie app.</div>
+          <span class="contact-card-action">
+            Leave a review
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </span>
+        </a>
+        <a href="https://play.google.com/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+              <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5z"/>
+            </svg>
+          </div>
+          <div class="contact-card-title">Rate on Google Play</div>
+          <div class="contact-card-sub">On Android? Share your feedback directly in the Play Store.</div>
+          <span class="contact-card-action">
+            Leave a review
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" aria-label="Frequently asked questions">
+
+      <!-- Gameplay -->
+      <div class="faq-group">
+        <p class="faq-group-label">Gameplay</p>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>
+              How do I form words?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Swipe (or drag) across adjacent letters on the 10×10 grid. Letters can connect horizontally, vertically, or diagonally — but you can't reuse the same cell in one word. Lift your finger to submit the word.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What's the minimum word length?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Words must be at least <strong>3 letters</strong> long. Proper nouns, abbreviations, and standalone letters don't count.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How does scoring work?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Each word scores the sum of its letter values (similar to Scrabble), multiplied by a length bonus:</p>
+              <table class="score-table" aria-label="Length multipliers">
+                <thead>
+                  <tr><th>Length</th><th>Multiplier</th><th>Time added</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>3 letters</td><td>×1</td><td>+3s</td></tr>
+                  <tr><td>4 letters</td><td>×1.5</td><td>+6s</td></tr>
+                  <tr><td>5 letters</td><td>×2</td><td>+10s</td></tr>
+                  <tr><td>6 letters</td><td>×3</td><td>+18s</td></tr>
+                  <tr><td>7 letters</td><td>×4.5</td><td>+25s</td></tr>
+                  <tr><td>8 letters</td><td>×6</td><td>+40s</td></tr>
+                  <tr><td>9+ letters</td><td>×8</td><td><em>+60s</em></td></tr>
+                </tbody>
+              </table>
+              <p>Rare letters like J, Q, X, and Z carry high base values, so words containing them score disproportionately well.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can I use the same word twice?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>No. Each word can only be scored once per game. If you try to trace a word you've already found, it will be rejected. Different paths to the same word count as the same word.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              A word I tried isn't being accepted — why?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>There are a few possible reasons:</p>
+              <ul style="padding-left:18px; display:flex; flex-direction:column; gap:6px; margin-top:4px;">
+                <li>The word isn't in our dictionary for the selected language.</li>
+                <li>It's a proper noun, abbreviation, or hyphenated compound.</li>
+                <li>You've already found it this game.</li>
+                <li>The letters aren't actually adjacent on the grid.</li>
+              </ul>
+              <p style="margin-top:8px;">If you're sure a common word should be accepted, email us at <a href="mailto:hello@decagram.ca">hello@decagram.ca</a> — we do expand the dictionary based on feedback.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Game Modes -->
+      <div class="faq-group">
+        <p class="faq-group-label">Game Modes</p>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>
+              What's the difference between Classic and Rush?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p><strong>Classic</strong> starts with 60 seconds and each word you find adds time back — games can last many minutes if you're on a streak.</p>
+              <p><strong>Rush</strong> is a hard 60-second cap. No time extensions. It's a pure burst mode for players who want a fixed time pressure.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How does Daily mode work?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Every day at midnight (in your local timezone) a new board is generated. Everyone playing Daily that day gets <strong>exactly the same grid</strong>, so the leaderboard is a true comparison. You get one attempt — there's no replaying the daily board once you've started.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does Zen mode count toward rankings?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>No. Zen is an unranked practice mode with no timer. It's a great way to explore the grid, learn new words, or just play without pressure. Your scores in Zen don't appear on any leaderboard.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Account & Data -->
+      <div class="faq-group">
+        <p class="faq-group-label">Account &amp; Data</p>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>
+              Do I need an account to play?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>No. You can play all modes without signing in. An account is only needed if you want your scores saved to the global leaderboard. Sign in with Apple or Google — no password required.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              I switched phones — how do I restore my progress?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Sign in with the same Apple or Google account you used originally. Your username, scores, and stats are tied to your account and will sync automatically once you're logged in on the new device.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I delete my account?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Email us at <a href="mailto:hello@decagram.ca">hello@decagram.ca</a> with the subject "Delete my account" and we'll permanently remove your account and all associated data within 30 days. You can also find the option in <strong>Settings → Account → Delete Account</strong> inside the app.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can I change my username?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Yes — go to <strong>Settings → Account → Edit Username</strong> in the app. You can change it once every 30 days.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Technical -->
+      <div class="faq-group">
+        <p class="faq-group-label">Technical</p>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>
+              The app crashed or a score wasn't saved — what should I do?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>First, make sure the app is updated to the latest version. If the problem persists, email us at <a href="mailto:hello@decagram.ca">hello@decagram.ca</a> with your device model, OS version, and a description of what happened. Screenshots help a lot.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What languages are supported?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Decagram currently supports <strong>English, French, Spanish, German, Italian, and Portuguese</strong>. Each language uses its own letter frequency distribution and dictionary. You can switch languages in <strong>Settings → Language</strong> — the board will regenerate.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does Decagram work offline?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Classic, Rush, and Zen modes work fully offline — the dictionary is bundled with the app. Daily mode and leaderboard features require a network connection to fetch the daily board and sync scores.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I report an inappropriate username?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Email <a href="mailto:hello@decagram.ca">hello@decagram.ca</a> with the username and we'll review it promptly. You can also use the report button on any leaderboard entry by long-pressing the row.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#00BFFF"/>
+      </svg>
+      Decagram
+    </a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="mailto:hello@decagram.ca">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support" aria-current="page">Support</a>
+    </nav>
+    <span class="footer-copy">&copy; <span id="yr"></span> Decagram</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

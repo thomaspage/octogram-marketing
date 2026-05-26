@@ -14,25 +14,30 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent:      #00BFFF;
-      --accent-deep: #0090CC;
-      --warn:        #F59E0B;
-      --warn-deep:   #D97706;
-      --bad:         #EF4444;
-      --bad-deep:    #DC2626;
-      --good:        #22C55E;
-      --good-deep:   #16A34A;
-      --bg:          #0A0E14;
-      --bg-card:     #141922;
-      --bg-elev:     #1C2333;
-      --ink:         #F0F4FF;
-      --ink-soft:    #8B95B0;
-      --border:      rgba(255,255,255,0.07);
+      --accent:      #1E7AB8;
+      --accent-soft: #4FA8DC;
+      --accent-deep: #0B4A75;
+      --warn:        #F5C453;
+      --warn-deep:   #E0A325;
+      --bad:         #FF7A1F;
+      --bad-deep:   #C24E08;
+      --good:        #1FD980;
+      --good-deep:   #0F9E5A;
+      --danger:      #E5484D;
+      --bg:          #0A0A0A;
+      --bg-soft:     #141414;
+      --bg-card:     #1C1C1C;
+      --bg-elev:     #262626;
+      --ink:         #F5F7FB;
+      --ink-soft:    #C5CCDD;
+      --ink-mute:    #7E8AA8;
+      --ink-dim:     #4F5A77;
+      --border:      rgba(255,255,255,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -49,12 +54,20 @@
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
+    /* Display type — Space Grotesk for headings, matches app */
+    h1, h2, h3, h4, .hero h1, .section-title, .cta-section h2, .nav-logo-text, .stat-value {
+      font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    }
+    .word-letter, .grid-cell, .lb-score, .word-score {
+      font-family: 'Space Mono', ui-monospace, monospace;
+    }
+
     /* ── NAV ── */
     nav.main-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(20px);
-      background: rgba(10, 14, 20, 0.8);
+      background: rgba(10, 10, 10, 0.8);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
@@ -72,7 +85,7 @@
     }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: #000;
+      background: var(--accent); color: #fff;
       font-size: 14px; font-weight: 600; padding: 8px 18px;
       border-radius: 100px; text-decoration: none;
       transition: opacity .15s, transform .15s;
@@ -89,12 +102,12 @@
     .hero-glow {
       position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
       width: 900px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(0,191,255,0.14) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(30,122,184,0.14) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(0,191,255,0.1); border: 1px solid rgba(0,191,255,0.25);
+      background: rgba(30,122,184,0.1); border: 1px solid rgba(30,122,184,0.25);
       color: var(--accent); font-size: 13px; font-weight: 600;
       padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
     }
@@ -115,7 +128,7 @@
     }
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(135deg, var(--accent), #80DFFF);
+      background: linear-gradient(135deg, var(--accent-soft), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -132,13 +145,13 @@
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent); color: #000;
+      background: var(--accent); color: #fff;
       font-size: 16px; font-weight: 700; padding: 14px 28px;
       border-radius: 100px; text-decoration: none;
       transition: opacity .15s, transform .15s, box-shadow .15s;
-      box-shadow: 0 0 40px rgba(0,191,255,0.35);
+      box-shadow: 0 0 40px rgba(30,122,184,0.35);
     }
-    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 0 60px rgba(0,191,255,0.5); }
+    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 0 60px rgba(30,122,184,0.5); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--bg-card); color: var(--ink);
@@ -174,14 +187,14 @@
       transition: background .2s, color .2s, border-color .2s;
     }
     .grid-cell.highlighted {
-      background: rgba(0,191,255,0.18);
-      border-color: rgba(0,191,255,0.5);
+      background: rgba(30,122,184,0.18);
+      border-color: rgba(30,122,184,0.5);
       color: var(--accent);
     }
     .grid-cell.path {
-      background: rgba(0,191,255,0.08);
-      border-color: rgba(0,191,255,0.25);
-      color: rgba(0,191,255,0.7);
+      background: rgba(30,122,184,0.08);
+      border-color: rgba(30,122,184,0.25);
+      color: rgba(30,122,184,0.7);
     }
 
     /* ── STATS BANNER ── */
@@ -189,7 +202,7 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 40px 0;
-      background: linear-gradient(180deg, rgba(0,191,255,0.03) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(30,122,184,0.03) 0%, transparent 100%);
     }
     .stats-grid {
       display: grid;
@@ -255,26 +268,26 @@
     }
 
     /* Classic */
-    .mode-card.classic { border-color: rgba(0,191,255,0.2); }
-    .mode-card.classic:hover { border-color: rgba(0,191,255,0.4); }
+    .mode-card.classic { border-color: rgba(30,122,184,0.2); }
+    .mode-card.classic:hover { border-color: rgba(30,122,184,0.4); }
     .mode-card.classic .mode-card-glow { background: var(--accent); }
     .mode-card.classic .mode-icon { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
     .mode-card.classic .mode-name { color: var(--accent); }
     /* Daily */
-    .mode-card.daily { border-color: rgba(245,158,11,0.2); }
-    .mode-card.daily:hover { border-color: rgba(245,158,11,0.4); }
+    .mode-card.daily { border-color: rgba(245,196,83,0.2); }
+    .mode-card.daily:hover { border-color: rgba(245,196,83,0.4); }
     .mode-card.daily .mode-card-glow { background: var(--warn); }
     .mode-card.daily .mode-icon { background: linear-gradient(135deg, var(--warn), var(--warn-deep)); }
     .mode-card.daily .mode-name { color: var(--warn); }
     /* Rush */
-    .mode-card.rush { border-color: rgba(239,68,68,0.2); }
-    .mode-card.rush:hover { border-color: rgba(239,68,68,0.4); }
+    .mode-card.rush { border-color: rgba(255,122,31,0.2); }
+    .mode-card.rush:hover { border-color: rgba(255,122,31,0.4); }
     .mode-card.rush .mode-card-glow { background: var(--bad); }
     .mode-card.rush .mode-icon { background: linear-gradient(135deg, var(--bad), var(--bad-deep)); }
     .mode-card.rush .mode-name { color: var(--bad); }
     /* Zen */
-    .mode-card.zen { border-color: rgba(34,197,94,0.2); }
-    .mode-card.zen:hover { border-color: rgba(34,197,94,0.4); }
+    .mode-card.zen { border-color: rgba(31,217,128,0.2); }
+    .mode-card.zen:hover { border-color: rgba(31,217,128,0.4); }
     .mode-card.zen .mode-card-glow { background: var(--good); }
     .mode-card.zen .mode-icon { background: linear-gradient(135deg, var(--good), var(--good-deep)); }
     .mode-card.zen .mode-name { color: var(--good); }
@@ -282,7 +295,7 @@
     /* ── SCORING ── */
     .scoring-section {
       padding: 100px 0;
-      background: linear-gradient(180deg, transparent, rgba(0,191,255,0.03) 50%, transparent);
+      background: linear-gradient(180deg, transparent, rgba(30,122,184,0.03) 50%, transparent);
     }
     .scoring-split {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -327,7 +340,7 @@
       padding: 12px 20px; border-radius: 100px;
       transition: border-color .15s, transform .15s;
     }
-    .lang-pill:hover { border-color: rgba(0,191,255,0.3); transform: translateY(-2px); }
+    .lang-pill:hover { border-color: rgba(30,122,184,0.3); transform: translateY(-2px); }
     .lang-flag { font-size: 22px; }
     .lang-name { font-size: 15px; font-weight: 600; }
     .lang-sub { font-size: 12px; color: var(--ink-soft); }
@@ -349,8 +362,8 @@
     .lb-mode-badge {
       font-size: 12px; font-weight: 600;
       padding: 4px 12px; border-radius: 100px;
-      background: rgba(0,191,255,0.1); color: var(--accent);
-      border: 1px solid rgba(0,191,255,0.25);
+      background: rgba(30,122,184,0.1); color: var(--accent);
+      border: 1px solid rgba(30,122,184,0.25);
     }
     .lb-row {
       display: flex; align-items: center; gap: 14px;
@@ -362,7 +375,7 @@
       width: 24px; text-align: center;
       font-size: 13px; font-weight: 700; color: var(--ink-soft);
     }
-    .lb-rank.gold { color: #F59E0B; }
+    .lb-rank.gold { color: #F5C453; }
     .lb-rank.silver { color: #94A3B8; }
     .lb-rank.bronze { color: #C2855C; }
     .lb-avatar {
@@ -384,7 +397,7 @@
     .cta-glow {
       position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
       width: 800px; height: 600px;
-      background: radial-gradient(ellipse at center, rgba(0,191,255,0.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(30,122,184,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
     .cta-section h2 {
@@ -437,8 +450,8 @@
           <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="url(#ng)" />
           <defs>
             <linearGradient id="ng" x1="3.5" y1="2" x2="28.5" y2="31" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#00BFFF"/>
-              <stop offset="1" stop-color="#0090CC"/>
+              <stop stop-color="#4FA8DC"/>
+              <stop offset="1" stop-color="#1E7AB8"/>
             </linearGradient>
           </defs>
         </svg>
@@ -700,7 +713,7 @@
         </div>
         <div class="lb-row">
           <span class="lb-rank gold">🥇</span>
-          <div class="lb-avatar" style="background:rgba(245,158,11,0.15);color:#F59E0B;">W</div>
+          <div class="lb-avatar" style="background:rgba(245,196,83,0.15);color:#F5C453;">W</div>
           <span class="lb-name">wordwizard</span>
           <div style="text-align:right">
             <div class="lb-score">1,842</div>
@@ -727,7 +740,7 @@
         </div>
         <div class="lb-row">
           <span class="lb-rank" style="font-size:11px;">4</span>
-          <div class="lb-avatar" style="background:rgba(0,191,255,0.15);color:var(--accent);">Y</div>
+          <div class="lb-avatar" style="background:rgba(30,122,184,0.15);color:var(--accent);">Y</div>
           <span class="lb-name">you?</span>
           <div style="text-align:right">
             <div class="lb-score" style="color:var(--ink-soft);">—</div>
@@ -768,7 +781,7 @@
     <div class="footer-inner">
       <a href="#" class="footer-logo">
         <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#00BFFF"/>
+          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#1E7AB8"/>
         </svg>
         Decagram
       </a>

@@ -1,6 +1,6 @@
-# decagram-marketing
+# octogram-marketing
 
-Static marketing site for [Decagram](https://decagram.ca) — a word-finding game for iOS and Android.
+Static marketing site for [Octogram](https://octogram.app) — a word-finding game for iOS and Android.
 
 Hosted on Cloudflare Pages. No build step required; the root directory is the deploy artifact.
 
@@ -17,7 +17,7 @@ npm run dev       # serves at http://localhost:3000
 
 1. Push this repo to GitHub.
 2. Go to [Cloudflare Pages](https://pages.cloudflare.com) → **Create a project** → **Connect to Git**.
-3. Select the `decagram-marketing` repo.
+3. Select the `octogram-marketing` repo.
 4. Set **Build command** to *(empty)* and **Build output directory** to `/` (root).
 5. Cloudflare will deploy on every push to `main`.
 

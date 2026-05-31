@@ -186,7 +186,7 @@
         <h2>Information we collect</h2>
         <p>We collect only what is necessary to run the game and improve your experience:</p>
         <ul>
-          <li><strong>Account data</strong> — if you choose to sign in, we store a username and an authentication token (via Apple Sign In or Google Sign In). We never see your Apple or Google password.</li>
+          <li><strong>Account data</strong> — if you choose to sign in, we store a username and an authentication token (via email, Apple Sign In, or Google Sign In). We never see your Apple or Google password. If you sign in with a provider that uses the same verified email address as an existing account, we link them so you can sign in with either method.</li>
           <li><strong>Gameplay data</strong> — scores, words found, modes played, and timestamps. This powers leaderboards and your personal stats.</li>
           <li><strong>Device information</strong> — platform (iOS / Android), OS version, and app version. Used for crash reporting and compatibility.</li>
           <li><strong>Crash and error logs</strong> — anonymous stack traces collected when the app crashes. These contain no personal information.</li>
@@ -294,7 +294,7 @@
   document.getElementById('yr').textContent = new Date().getFullYear();
   document.getElementById('updated').textContent = new Intl.DateTimeFormat('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
-  }).format(new Date('2026-05-25'));
+  }).format(new Date('2026-05-31'));
 </script>
 
 </body>

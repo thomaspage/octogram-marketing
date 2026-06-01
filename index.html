@@ -170,7 +170,7 @@
     }
     .grid-demo {
       display: grid;
-      grid-template-columns: repeat(10, 1fr);
+      grid-template-columns: repeat(8, 1fr);
       gap: 4px;
       max-width: 360px; width: 100%;
       user-select: none;
@@ -215,6 +215,9 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .stat-label { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+
+    /* ── ABOUT ── */
+    .about-section { padding: 80px 0 20px; }
 
     /* ── MODES ── */
     .modes-section { padding: 100px 0; }
@@ -475,8 +478,10 @@
     </div>
     <h1>Words, wired<br />for <em>speed.</em></h1>
     <p class="hero-sub">
-      Swipe through a 10×10 grid of letters, chain words, and race the clock.
-      Four modes. Six languages.
+      Octogram is a free word-search puzzle game for iOS and Android. Swipe across a
+      8×8 grid of letters to spell words, score points, and race the clock across
+      four game modes in six languages. Sign in with Google to save your progress and
+      compete on global leaderboards.
     </p>
     <div class="hero-actions">
       <a href="#download" class="btn-primary" id="download">
@@ -505,7 +510,7 @@
   <div class="container">
     <div class="stats-grid">
       <div>
-        <div class="stat-value">10×10</div>
+        <div class="stat-value">8×8</div>
         <div class="stat-label">Letter grid</div>
       </div>
       <div>
@@ -521,6 +526,28 @@
         <div class="stat-label">Daily boards</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div class="container">
+    <p class="section-eyebrow">About Octogram</p>
+    <h2 class="section-title">What is Octogram?</h2>
+    <p class="section-sub" style="max-width: 760px; margin-bottom: 20px;">
+      Octogram is a fast-paced word puzzle game for mobile. Players are given an 8×8
+      grid of letters and swipe across connected tiles to form valid dictionary words.
+      Longer and rarer words score more points, and in timed modes each word you find
+      adds seconds back to the clock. The goal is simple: find as many high-scoring
+      words as you can before time runs out.
+    </p>
+    <p class="section-sub" style="max-width: 760px; margin-bottom: 0;">
+      The app is free to play and available on iOS and Android. Signing in with your
+      Google account is optional — it lets you save your stats and game history across
+      devices and post your scores to the global and daily leaderboards. We only use
+      your basic Google profile (name and email) to create your account and identify
+      you on the leaderboard; we never post to your account or access any other data.
+    </p>
   </div>
 </section>
 
@@ -800,22 +827,20 @@
   // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Render 10×10 letter grid
+  // Render 8×8 letter grid
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const GRID = 100;
+  const GRID = 64;
   const grid = document.getElementById('gridDemo');
   const cells = [];
   const seed = [
-    'S','W','I','F','T','L','Y','Z','Q','B',
-    'P','L','A','Y','I','N','G','O','X','V',
-    'R','E','A','D','E','R','S','H','U','E',
-    'C','H','A','R','T','S','L','I','M','A',
-    'O','N','W','O','R','D','S','T','E','R',
-    'T','H','I','N','K','E','R','A','C','E',
-    'R','E','S','P','O','N','S','E','L','Y',
-    'W','R','I','T','E','R','B','L','O','G',
-    'S','T','A','C','K','S','C','O','R','E',
-    'E','X','P','L','O','R','E','D','A','Y',
+    'S','W','I','F','T','L','Y','Z',
+    'P','L','A','Y','I','N','G','O',
+    'R','E','A','D','E','R','S','H',
+    'C','H','A','R','T','S','I','M',
+    'W','O','R','D','S','T','E','R',
+    'T','H','I','N','K','A','C','E',
+    'E','X','P','L','O','R','E','D',
+    'S','C','O','R','E','B','U','G',
   ];
 
   for (let i = 0; i < GRID; i++) {
@@ -826,16 +851,16 @@
     cells.push(el);
   }
 
-  // Animate highlighted words
+  // Animate highlighted words (indices for an 8-wide grid)
   const highlights = [
     // "PLAYING" across row 1
-    [10,11,12,13,14,15,16],
-    // "WORDS" somewhere
+    [8,9,10,11,12,13,14],
+    // "WORDS" across row 4
+    [32,33,34,35,36],
+    // "THINK" across row 5
     [40,41,42,43,44],
-    // "THINK"
-    [50,51,52,53,54],
-    // "SCORE"
-    [85,86,87,88,89],
+    // "SCORE" across row 7
+    [56,57,58,59,60],
   ];
   let currentWord = 0;
   let prev = [];

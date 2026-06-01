@@ -9,9 +9,13 @@
   <meta property="og:description" content="Swipe through a grid of letters, chain words, and race the clock. Four unique modes. One obsession." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://octogram.app" />
+  <meta property="og:image" content="https://octogram.app/icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://octogram.app/icon.png" />
+  <meta name="theme-color" content="#0175FC" />
   <link rel="canonical" href="https://octogram.app" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -79,6 +83,8 @@
     }
     .nav-logo-mark {
       width: 32px; height: 32px;
+      border-radius: 8px;
+      display: block;
     }
     .nav-logo-text {
       font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
@@ -104,6 +110,13 @@
       width: 900px; height: 700px;
       background: radial-gradient(ellipse at center, rgba(30,122,184,0.14) 0%, transparent 70%);
       pointer-events: none;
+    }
+    .hero-logo {
+      width: clamp(240px, 50%, 420px);
+      height: auto;
+      margin: 0 auto 32px;
+      display: block;
+      filter: drop-shadow(0 8px 40px rgba(30,122,184,0.35));
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -449,15 +462,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo" aria-label="Octogram home">
-        <svg class="nav-logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="url(#ng)" />
-          <defs>
-            <linearGradient id="ng" x1="3.5" y1="2" x2="28.5" y2="31" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#4FA8DC"/>
-              <stop offset="1" stop-color="#1E7AB8"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <img class="nav-logo-mark" src="/icon.png" alt="" width="32" height="32" aria-hidden="true" />
         <span class="nav-logo-text">Octogram</span>
       </a>
       <a href="#download" class="nav-cta">
@@ -472,6 +477,7 @@
 <section class="hero">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="container">
+    <img class="hero-logo" src="/logo.png" alt="Octogram" width="420" height="151" />
     <div class="hero-badge">
       <span class="hero-badge-dot" aria-hidden="true"></span>
       Free to play · iOS &amp; Android
@@ -807,9 +813,7 @@
   <div class="container">
     <div class="footer-inner">
       <a href="#" class="footer-logo">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#1E7AB8"/>
-        </svg>
+        <img src="/icon.png" alt="" width="20" height="20" style="border-radius:5px;display:block;" aria-hidden="true" />
         Octogram
       </a>
       <nav class="footer-links" aria-label="Footer navigation">

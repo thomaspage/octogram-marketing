@@ -6,25 +6,28 @@
   <title>Support — Octogram</title>
   <meta name="description" content="Get help with Octogram. Find answers to common questions about scoring, game modes, accounts, and more." />
   <link rel="canonical" href="https://octogram.app/support" />
+  <meta name="theme-color" content="#0175FC" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent:      #00BFFF;
-      --accent-deep: #0090CC;
-      --warn:        #F59E0B;
-      --bad:         #EF4444;
-      --good:        #22C55E;
-      --bg:          #0A0E14;
-      --bg-card:     #141922;
-      --bg-elev:     #1C2333;
-      --ink:         #F0F4FF;
-      --ink-soft:    #8B95B0;
-      --border:      rgba(255,255,255,0.07);
+      --accent:      #1E7AB8;
+      --accent-soft: #4FA8DC;
+      --accent-deep: #0B4A75;
+      --warn:        #F5C453;
+      --bad:         #FF7A1F;
+      --good:        #1FD980;
+      --bg:          #0A0A0A;
+      --bg-card:     #1C1C1C;
+      --bg-elev:     #262626;
+      --ink:         #F5F7FB;
+      --ink-soft:    #C5CCDD;
+      --border:      rgba(255,255,255,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -37,6 +40,10 @@
       overflow-x: hidden;
     }
 
+    h1, h2, h3, .page-title, .nav-logo-text {
+      font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    }
+
     .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
     .container-wide { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
@@ -45,7 +52,7 @@
       position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(20px);
-      background: rgba(10, 14, 20, 0.8);
+      background: rgba(10, 10, 10, 0.8);
     }
     .nav-inner {
       max-width: 1120px; margin: 0 auto; padding: 0 24px;
@@ -101,11 +108,11 @@
       display: flex; flex-direction: column; gap: 12px;
       transition: border-color .15s, transform .15s;
     }
-    .contact-card:hover { border-color: rgba(0,191,255,0.3); transform: translateY(-3px); }
+    .contact-card:hover { border-color: rgba(30,122,184,0.3); transform: translateY(-3px); }
     .contact-icon {
       width: 44px; height: 44px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(0,191,255,0.1);
+      background: rgba(30,122,184,0.1);
     }
     .contact-card-title { font-size: 16px; font-weight: 700; }
     .contact-card-sub { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
@@ -136,7 +143,7 @@
       transition: border-color .15s;
     }
     details.faq-item[open] {
-      border-color: rgba(0,191,255,0.2);
+      border-color: rgba(30,122,184,0.2);
     }
     details.faq-item summary {
       display: flex; align-items: center; justify-content: space-between;
@@ -219,15 +226,7 @@
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Octogram home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="url(#ng)" />
-        <defs>
-          <linearGradient id="ng" x1="3.5" y1="2" x2="28.5" y2="31" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00BFFF"/>
-            <stop offset="1" stop-color="#0090CC"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img src="/icon.png" alt="" width="32" height="32" style="border-radius:8px;display:block;" aria-hidden="true" />
       <span class="nav-logo-text">Octogram</span>
     </a>
     <a href="/" class="nav-back" aria-label="Back to home">
@@ -257,7 +256,7 @@
       <div class="contact-grid">
         <a href="mailto:hello@octogram.app" class="contact-card">
           <div class="contact-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1E7AB8">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
           </div>
@@ -270,7 +269,7 @@
         </a>
         <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="contact-card">
           <div class="contact-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1E7AB8">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
           </div>
@@ -283,7 +282,7 @@
         </a>
         <a href="https://play.google.com/" target="_blank" rel="noopener" class="contact-card">
           <div class="contact-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00BFFF">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1E7AB8">
               <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5z"/>
             </svg>
           </div>
@@ -523,9 +522,7 @@
 <footer>
   <div class="footer-inner">
     <a href="/" class="footer-logo">
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 2L19.5 10.5L28.5 9L23.5 17L28.5 25L19.5 22.5L16 31L12.5 22.5L3.5 25L8.5 17L3.5 9L12.5 10.5L16 2Z" fill="#00BFFF"/>
-      </svg>
+      <img src="/icon.png" alt="" width="20" height="20" style="border-radius:5px;display:block;" aria-hidden="true" />
       Octogram
     </a>
     <nav class="footer-links" aria-label="Footer navigation">

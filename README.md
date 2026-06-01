@@ -41,7 +41,18 @@ Cloudflare will automatically provision a TLS certificate and update DNS.
 | File | Purpose |
 |------|---------|
 | `index.html` | Full marketing landing page |
+| `support/`, `privacy/` | Support and privacy policy pages |
 | `_headers` | Cloudflare Pages HTTP response headers |
 | `_redirects` | Catch-all SPA redirect rule |
 | `wrangler.toml` | Wrangler CLI config |
-| `favicon.png` | Tab icon (copy from the main app's `assets/images/favicon.png`) |
+| `logo.png` | Octogram wordmark (from the app's `assets/images/logo.png`) |
+| `icon.png` | App icon — used as logo mark + `og:image` (from the app's `assets/images/icon.png`) |
+| `favicon.png` | Tab icon (generated from `icon.png`) |
+| `apple-touch-icon.png` | iOS home-screen icon (generated from `icon.png`) |
+
+Brand assets are sourced from the main app (`octogram/assets/images/`). To refresh them, copy `icon.png` and `logo.png` over and regenerate the favicon/touch icon:
+
+```bash
+sips -z 256 256 icon.png --out favicon.png
+sips -z 180 180 icon.png --out apple-touch-icon.png
+```

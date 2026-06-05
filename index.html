@@ -257,23 +257,17 @@
       .modes-grid { grid-template-columns: repeat(3, 1fr); }
     }
     .mode-card {
-      background: var(--bg-card);
+      background:
+        radial-gradient(150px 150px at 100% 0%, var(--glow, transparent), transparent 70%),
+        var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 28px;
       position: relative; overflow: hidden;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
       transition: transform .2s, border-color .2s;
     }
-    .mode-card:hover { transform: translateY(-4px) translateZ(0); }
-    .mode-card-glow {
-      position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      opacity: 0.12;
-      filter: blur(40px);
-    }
+    .mode-card:hover { transform: translateY(-4px); }
+    .mode-card-glow { display: none; }
     .mode-icon {
       width: 52px; height: 52px; border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
@@ -290,33 +284,28 @@
     }
 
     /* Classic */
-    .mode-card.classic { border-color: rgba(30,122,184,0.2); }
+    .mode-card.classic { --glow: rgba(30,122,184,0.22); border-color: rgba(30,122,184,0.2); }
     .mode-card.classic:hover { border-color: rgba(30,122,184,0.4); }
-    .mode-card.classic .mode-card-glow { background: var(--accent); }
     .mode-card.classic .mode-icon { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
     .mode-card.classic .mode-name { color: var(--accent); }
     /* Daily */
-    .mode-card.daily { border-color: rgba(245,196,83,0.2); }
+    .mode-card.daily { --glow: rgba(245,196,83,0.22); border-color: rgba(245,196,83,0.2); }
     .mode-card.daily:hover { border-color: rgba(245,196,83,0.4); }
-    .mode-card.daily .mode-card-glow { background: var(--warn); }
     .mode-card.daily .mode-icon { background: linear-gradient(135deg, var(--warn), var(--warn-deep)); }
     .mode-card.daily .mode-name { color: var(--warn); }
     /* Rush */
-    .mode-card.rush { border-color: rgba(255,122,31,0.2); }
+    .mode-card.rush { --glow: rgba(255,122,31,0.22); border-color: rgba(255,122,31,0.2); }
     .mode-card.rush:hover { border-color: rgba(255,122,31,0.4); }
-    .mode-card.rush .mode-card-glow { background: var(--bad); }
     .mode-card.rush .mode-icon { background: linear-gradient(135deg, var(--bad), var(--bad-deep)); }
     .mode-card.rush .mode-name { color: var(--bad); }
     /* Zen */
-    .mode-card.zen { border-color: rgba(31,217,128,0.2); }
+    .mode-card.zen { --glow: rgba(31,217,128,0.22); border-color: rgba(31,217,128,0.2); }
     .mode-card.zen:hover { border-color: rgba(31,217,128,0.4); }
-    .mode-card.zen .mode-card-glow { background: var(--good); }
     .mode-card.zen .mode-icon { background: linear-gradient(135deg, var(--good), var(--good-deep)); }
     .mode-card.zen .mode-name { color: var(--good); }
     /* Mini */
-    .mode-card.mini { border-color: rgba(126,91,211,0.2); }
+    .mode-card.mini { --glow: rgba(126,91,211,0.22); border-color: rgba(126,91,211,0.2); }
     .mode-card.mini:hover { border-color: rgba(126,91,211,0.4); }
-    .mode-card.mini .mode-card-glow { background: #7E5BD3; }
     .mode-card.mini .mode-icon { background: linear-gradient(135deg, #7E5BD3, #5A3CB0); }
     .mode-card.mini .mode-name { color: #7E5BD3; }
 

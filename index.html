@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Octogram — Word Game</title>
-  <meta name="description" content="Swipe through a grid of letters, chain words, and race the clock. Four unique modes. One obsession." />
+  <meta name="description" content="Swipe through a grid of letters, chain words, and race the clock. Five unique modes. One obsession." />
   <meta property="og:title" content="Octogram — Word Game" />
-  <meta property="og:description" content="Swipe through a grid of letters, chain words, and race the clock. Four unique modes. One obsession." />
+  <meta property="og:description" content="Swipe through a grid of letters, chain words, and race the clock. Five unique modes. One obsession." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://octogram.app" />
   <meta property="og:image" content="https://octogram.app/icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://octogram.app/icon.png" />
   <meta name="theme-color" content="#0175FC" />
+  <meta name="apple-itunes-app" content="app-id=6774310886" />
   <link rel="canonical" href="https://octogram.app" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -33,15 +34,15 @@
       --good:        #1FD980;
       --good-deep:   #0F9E5A;
       --danger:      #E5484D;
-      --bg:          #0A0A0A;
-      --bg-soft:     #141414;
-      --bg-card:     #1C1C1C;
-      --bg-elev:     #262626;
-      --ink:         #F5F7FB;
-      --ink-soft:    #C5CCDD;
-      --ink-mute:    #7E8AA8;
-      --ink-dim:     #4F5A77;
-      --border:      rgba(255,255,255,0.08);
+      --bg:          #B8E4FA;
+      --bg-soft:     #D1EEFC;
+      --bg-card:     #E8F6FE;
+      --bg-elev:     #F4FBFF;
+      --ink:         #0B0F19;
+      --ink-soft:    #2C3654;
+      --ink-mute:    #5B6486;
+      --ink-dim:     #9BA3BC;
+      --border:      rgba(11,15,25,0.1);
     }
 
     html { scroll-behavior: smooth; }
@@ -71,7 +72,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(20px);
-      background: rgba(10, 10, 10, 0.8);
+      background: rgba(209, 238, 252, 0.8);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
@@ -279,7 +280,7 @@
     .mode-chip {
       font-size: 11px; font-weight: 600;
       padding: 3px 10px; border-radius: 100px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(11,15,25,0.06);
       color: var(--ink-soft);
     }
 
@@ -307,6 +308,12 @@
     .mode-card.zen .mode-card-glow { background: var(--good); }
     .mode-card.zen .mode-icon { background: linear-gradient(135deg, var(--good), var(--good-deep)); }
     .mode-card.zen .mode-name { color: var(--good); }
+    /* Mini */
+    .mode-card.mini { border-color: rgba(126,91,211,0.2); }
+    .mode-card.mini:hover { border-color: rgba(126,91,211,0.4); }
+    .mode-card.mini .mode-card-glow { background: #7E5BD3; }
+    .mode-card.mini .mode-icon { background: linear-gradient(135deg, #7E5BD3, #5A3CB0); }
+    .mode-card.mini .mode-name { color: #7E5BD3; }
 
     /* ── SCORING ── */
     .scoring-section {
@@ -486,7 +493,7 @@
     <p class="hero-sub">
       Octogram is a free word-search puzzle game for iOS and Android. Swipe across a
       8×8 grid of letters to spell words, score points, and race the clock across
-      four game modes in six languages. Sign in with Google to save your progress and
+      five game modes in six languages. Sign in with Google to save your progress and
       compete on global leaderboards.
     </p>
     <div class="hero-actions">
@@ -520,7 +527,7 @@
         <div class="stat-label">Letter grid</div>
       </div>
       <div>
-        <div class="stat-value">4</div>
+        <div class="stat-value">5</div>
         <div class="stat-label">Game modes</div>
       </div>
       <div>
@@ -562,26 +569,9 @@
   <div class="container">
     <p class="section-eyebrow">Game Modes</p>
     <h2 class="section-title">Pick your pace.</h2>
-    <p class="section-sub">Four distinct modes let you play at a sprint, a marathon, or no pace at all.</p>
+    <p class="section-sub">Five distinct modes let you play at a sprint, a marathon, or no pace at all.</p>
 
     <div class="modes-grid">
-      <!-- Classic -->
-      <div class="mode-card classic">
-        <div class="mode-card-glow" aria-hidden="true"></div>
-        <div class="mode-icon" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
-          </svg>
-        </div>
-        <div class="mode-name">Classic</div>
-        <p class="mode-blurb">Start at 60 seconds. Find words to add time. Play until the clock runs out.</p>
-        <div class="mode-chips">
-          <span class="mode-chip">60s start</span>
-          <span class="mode-chip">Time boost</span>
-          <span class="mode-chip">Ranked</span>
-        </div>
-      </div>
-
       <!-- Daily -->
       <div class="mode-card daily">
         <div class="mode-card-glow" aria-hidden="true"></div>
@@ -595,7 +585,39 @@
         <div class="mode-chips">
           <span class="mode-chip">90s start</span>
           <span class="mode-chip">Time boost</span>
-          <span class="mode-chip">Ranked</span>
+        </div>
+      </div>
+
+      <!-- Classic -->
+      <div class="mode-card classic">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Classic</div>
+        <p class="mode-blurb">Start at 60 seconds. Find words to add time. Play until the clock runs out.</p>
+        <div class="mode-chips">
+          <span class="mode-chip">60s start</span>
+          <span class="mode-chip">Time boost</span>
+        </div>
+      </div>
+
+      <!-- Mini -->
+      <div class="mode-card mini">
+        <div class="mode-card-glow" aria-hidden="true"></div>
+        <div class="mode-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+          </svg>
+        </div>
+        <div class="mode-name">Mini</div>
+        <p class="mode-blurb">A bite-sized 4×4 board with diagonal moves. Quick, tight, tricky.</p>
+        <div class="mode-chips">
+          <span class="mode-chip">4×4 board</span>
+          <span class="mode-chip">90s start</span>
+          <span class="mode-chip">Time boost</span>
         </div>
       </div>
 
@@ -612,7 +634,6 @@
         <div class="mode-chips">
           <span class="mode-chip">60s fixed</span>
           <span class="mode-chip">No boosts</span>
-          <span class="mode-chip">Ranked</span>
         </div>
       </div>
 
@@ -628,8 +649,6 @@
         <p class="mode-blurb">No timer, no pressure. Just letters and words.</p>
         <div class="mode-chips">
           <span class="mode-chip">No timer</span>
-          <span class="mode-chip">Practice</span>
-          <span class="mode-chip">Unranked</span>
         </div>
       </div>
     </div>

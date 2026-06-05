@@ -250,8 +250,11 @@
     }
     .modes-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
+    }
+    @media (max-width: 1000px) {
+      .modes-grid { grid-template-columns: repeat(3, 1fr); }
     }
     .mode-card {
       background: var(--bg-card);
@@ -259,9 +262,11 @@
       border-radius: 20px;
       padding: 28px;
       position: relative; overflow: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
       transition: transform .2s, border-color .2s;
     }
-    .mode-card:hover { transform: translateY(-4px); }
+    .mode-card:hover { transform: translateY(-4px) translateZ(0); }
     .mode-card-glow {
       position: absolute; top: -60px; right: -60px;
       width: 200px; height: 200px;
@@ -493,7 +498,7 @@
     <p class="hero-sub">
       Octogram is a free word-search puzzle game for iOS and Android. Swipe across a
       8×8 grid of letters to spell words, score points, and race the clock across
-      five game modes in six languages. Sign in with Google to save your progress and
+      five game modes in four languages. Sign in with Google to save your progress and
       compete on global leaderboards.
     </p>
     <div class="hero-actions">
@@ -531,7 +536,7 @@
         <div class="stat-label">Game modes</div>
       </div>
       <div>
-        <div class="stat-value">6</div>
+        <div class="stat-value">4</div>
         <div class="stat-label">Languages</div>
       </div>
       <div>
@@ -730,14 +735,6 @@
       <div class="lang-pill">
         <span class="lang-flag" aria-hidden="true">🇪🇸</span>
         <div><div class="lang-name">Español</div><div class="lang-sub">Spanish</div></div>
-      </div>
-      <div class="lang-pill">
-        <span class="lang-flag" aria-hidden="true">🇩🇪</span>
-        <div><div class="lang-name">Deutsch</div><div class="lang-sub">German</div></div>
-      </div>
-      <div class="lang-pill">
-        <span class="lang-flag" aria-hidden="true">🇮🇹</span>
-        <div><div class="lang-name">Italiano</div><div class="lang-sub">Italian</div></div>
       </div>
       <div class="lang-pill">
         <span class="lang-flag" aria-hidden="true">🇧🇷</span>

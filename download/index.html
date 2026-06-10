@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download — Octogram</title>
+  <meta name="description" content="Download Octogram, the free infinite word-search puzzle game, on iOS and Android." />
+  <link rel="canonical" href="https://octogram.app/download" />
+  <meta name="theme-color" content="#0175FC" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:      #1E7AB8;
+      --accent-soft: #4FA8DC;
+      --accent-deep: #0B4A75;
+      --warn:        #F5C453;
+      --bad:         #FF7A1F;
+      --good:        #1FD980;
+      --bg:          #B8E4FA;
+      --bg-card:     #E8F6FE;
+      --bg-elev:     #F4FBFF;
+      --ink:         #0B0F19;
+      --ink-soft:    #2C3654;
+      --border:      rgba(11,15,25,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, .page-title, .nav-logo-text {
+      font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(209, 238, 252, 0.8);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo-text { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--ink-soft);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    main { flex: 1; }
+    .download-hero {
+      padding: 80px 0 96px;
+      text-align: center;
+    }
+    .download-logo {
+      width: 88px; height: 88px;
+      border-radius: 22px;
+      box-shadow: 0 12px 40px rgba(11,15,25,0.18);
+      margin-bottom: 28px;
+    }
+    .page-eyebrow {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent); margin-bottom: 14px;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .page-sub {
+      font-size: 18px; color: var(--ink-soft); line-height: 1.65;
+      max-width: 500px; margin: 0 auto 40px;
+    }
+
+    /* ── STORE BUTTONS ── */
+    .store-buttons {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 26px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700; font-size: 16px;
+      transition: transform .15s, box-shadow .15s, border-color .15s;
+      min-width: 210px;
+      justify-content: center;
+    }
+    .store-btn-primary {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(11,15,25,0.22);
+    }
+    .store-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(11,15,25,0.28); }
+    .store-btn-secondary {
+      background: var(--bg-elev);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .store-btn-secondary:hover { transform: translateY(-3px); border-color: rgba(30,122,184,0.35); }
+    .store-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .store-btn-labels { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+    .store-btn-small { font-size: 11px; font-weight: 500; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+    .store-btn-large { font-size: 18px; font-weight: 700; }
+
+    .download-note {
+      margin-top: 32px;
+      font-size: 14px; color: var(--ink-soft);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700;
+      color: var(--ink-soft); text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 14px; color: var(--ink-soft); text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-size: 13px; color: var(--ink-soft); }
+
+    @media (max-width: 600px) {
+      .download-hero { padding: 56px 0 64px; }
+      .store-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Octogram home">
+      <img src="/icon.png" alt="" width="32" height="32" style="border-radius:8px;display:block;" aria-hidden="true" />
+      <span class="nav-logo-text">Octogram</span>
+    </a>
+    <a href="/" class="nav-back" aria-label="Back to home">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main>
+  <section class="download-hero">
+    <div class="container">
+      <img class="download-logo" src="/icon.png" alt="Octogram app icon" width="88" height="88" />
+      <p class="page-eyebrow">Download</p>
+      <h1 class="page-title">Get Octogram</h1>
+      <p class="page-sub">
+        The free infinite word-search puzzle game. Swipe to spell words, race the clock,
+        and climb the leaderboards across five modes and four languages.
+      </p>
+
+      <div class="store-buttons">
+        <a id="appStore" href="https://apps.apple.com/app/octogram-infinite-word-search/id6774310886" target="_blank" rel="noopener" class="store-btn store-btn-primary">
+          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="store-btn-labels">
+            <span class="store-btn-small">Download on the</span>
+            <span class="store-btn-large">App Store</span>
+          </span>
+        </a>
+        <a id="playStore" href="https://play.google.com/store/apps/details?id=app.octogram" target="_blank" rel="noopener" class="store-btn store-btn-secondary">
+          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5zm2-13.27V16.8l9.58-5.65L5 7.23z"/>
+          </svg>
+          <span class="store-btn-labels">
+            <span class="store-btn-small">Get it on</span>
+            <span class="store-btn-large">Google Play</span>
+          </span>
+        </a>
+      </div>
+
+      <p class="download-note">Free to play · iOS &amp; Android</p>
+    </div>
+  </section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">
+      <img src="/icon.png" alt="" width="20" height="20" style="border-radius:5px;display:block;" aria-hidden="true" />
+      Octogram
+    </a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="mailto:hello@octogram.app">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+    </nav>
+    <span class="footer-copy">&copy; <span id="yr"></span> Octogram</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Send mobile visitors straight to their platform's store; desktop visitors
+  // see both buttons and choose.
+  (function () {
+    var ua = navigator.userAgent || navigator.vendor || '';
+    var appStore = document.getElementById('appStore');
+    var playStore = document.getElementById('playStore');
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+      window.location.replace(appStore.href);
+    } else if (/android/i.test(ua)) {
+      window.location.replace(playStore.href);
+    }
+  })();
+</script>
+
+</body>
+</html>

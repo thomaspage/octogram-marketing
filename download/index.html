@@ -124,6 +124,8 @@
       border: 1px solid var(--border);
     }
     .store-btn-secondary:hover { transform: translateY(-3px); border-color: rgba(30,122,184,0.35); }
+    .store-btn-disabled { opacity: 0.55; cursor: default; }
+    .store-btn-disabled:hover { transform: none; border-color: var(--border); }
     .store-icon { width: 26px; height: 26px; flex-shrink: 0; }
     .store-btn-labels { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
     .store-btn-small { font-size: 11px; font-weight: 500; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -203,15 +205,15 @@
             <span class="store-btn-large">App Store</span>
           </span>
         </a>
-        <a id="playStore" href="https://play.google.com/store/apps/details?id=app.octogram" target="_blank" rel="noopener" class="store-btn store-btn-secondary">
+        <span class="store-btn store-btn-secondary store-btn-disabled" aria-disabled="true">
           <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M3 20.5v-17c0-.83 1-1.3 1.6-.73l14.4 8.5c.57.34.57 1.12 0 1.46L4.6 21.23C4 21.8 3 21.33 3 20.5zm2-13.27V16.8l9.58-5.65L5 7.23z"/>
           </svg>
           <span class="store-btn-labels">
-            <span class="store-btn-small">Get it on</span>
+            <span class="store-btn-small">Coming soon to</span>
             <span class="store-btn-large">Google Play</span>
           </span>
-        </a>
+        </span>
       </div>
 
       <p class="download-note">Free to play · iOS &amp; Android</p>
@@ -238,16 +240,13 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Send mobile visitors straight to their platform's store; desktop visitors
-  // see both buttons and choose.
+  // Send iOS visitors straight to the App Store. Android isn't published yet,
+  // so Android and desktop visitors stay on the page.
   (function () {
     var ua = navigator.userAgent || navigator.vendor || '';
     var appStore = document.getElementById('appStore');
-    var playStore = document.getElementById('playStore');
     if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
       window.location.replace(appStore.href);
-    } else if (/android/i.test(ua)) {
-      window.location.replace(playStore.href);
     }
   })();
 </script>

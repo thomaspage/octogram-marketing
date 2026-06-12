@@ -4,6 +4,13 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
+# Keep the game hidden from search engines / bots. Applies to the page and all
+# of its assets so nothing under /play is indexed or archived.
+/play
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+/play/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
 

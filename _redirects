@@ -3,5 +3,11 @@
 /support  /support/index.html  200
 /download  /download/index.html  200
 
+# Play (Expo web SPA, local-only build). Real files under /play/_expo and
+# /play/assets are served directly by Pages; any other /play route falls back
+# to the SPA shell so client-side routing works on deep links / refresh.
+/play  /play/index.html  200
+/play/*  /play/index.html  200
+
 # Catch-all: serve index.html for any unmatched paths
 /*  /index.html  200

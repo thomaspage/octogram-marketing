@@ -1,0 +1,15 @@
+# Octogram
+
+> Octogram is a fast-paced mobile word game. Swipe through a grid of letters, chain words, and race the clock across five unique modes. Available on iOS and Android.
+
+## Pages
+
+- [Home](https://octogram.app/): Overview of Octogram, its game modes, and features.
+- [Download](https://octogram.app/download): Get Octogram on the App Store and Google Play.
+- [Support](https://octogram.app/support): Help, FAQs, and how to contact the Octogram team.
+
+## Legal
+
+- [Privacy Policy](https://octogram.app/privacy): How Octogram collects, uses, and protects your data.
+- [Terms of Service](https://octogram.app/terms): The terms governing use of Octogram.
+- [Delete Account](https://octogram.app/delete-account): How to delete your Octogram account and associated data.

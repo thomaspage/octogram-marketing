@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Octogram</title>
+  <meta name="description" content="Terms of Service for the Octogram word game app." />
+  <link rel="canonical" href="https://octogram.app/terms" />
+  <meta name="theme-color" content="#0175FC" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:      #1E7AB8;
+      --accent-soft: #4FA8DC;
+      --accent-deep: #0B4A75;
+      --bg:          #B8E4FA;
+      --bg-card:     #E8F6FE;
+      --bg-elev:     #F4FBFF;
+      --ink:         #0B0F19;
+      --ink-soft:    #2C3654;
+      --border:      rgba(11,15,25,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .page-title, .nav-logo-text {
+      font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(209, 238, 252, 0.8);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo-text { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--ink-soft);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* ── PAGE ── */
+    .page-header {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-eyebrow {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent); margin-bottom: 14px;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .page-meta { font-size: 14px; color: var(--ink-soft); }
+
+    /* ── PROSE ── */
+    .prose {
+      padding: 56px 0 100px;
+      display: flex; flex-direction: column; gap: 40px;
+    }
+    .prose-section { display: flex; flex-direction: column; gap: 14px; }
+    .prose h2 {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+    }
+    .prose p {
+      font-size: 16px; line-height: 1.75; color: var(--ink-soft);
+    }
+    .prose p a {
+      color: var(--accent); text-decoration: none;
+    }
+    .prose p a:hover { text-decoration: underline; }
+    .prose ul {
+      padding-left: 20px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .prose ul li {
+      font-size: 16px; line-height: 1.75; color: var(--ink-soft);
+    }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700;
+      color: var(--ink-soft); text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 14px; color: var(--ink-soft); text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-size: 13px; color: var(--ink-soft); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 48px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Octogram home">
+      <img src="/icon.png" alt="" width="32" height="32" style="border-radius:8px;display:block;" aria-hidden="true" />
+      <span class="nav-logo-text">Octogram</span>
+    </a>
+    <a href="/" class="nav-back" aria-label="Back to home">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back
+    </a>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header class="page-header">
+  <div class="container">
+    <p class="page-eyebrow">Legal</p>
+    <h1 class="page-title">Terms of Service</h1>
+    <p class="page-meta">Last updated: <span id="updated"></span></p>
+  </div>
+</header>
+
+<!-- ── CONTENT ── -->
+<main>
+  <div class="container">
+    <div class="prose">
+
+      <div class="prose-section info-card">
+        <p>
+          These Terms of Service ("Terms") govern your use of the Octogram word game app
+          and the octogram.app website (together, the "Service"), operated by Octogram
+          ("we", "our", or "us"). By downloading, accessing, or using the Service, you
+          agree to these Terms. If you do not agree, please do not use the Service.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Using the Service</h2>
+        <p>Octogram is a free word game. You may use the Service for personal, non-commercial entertainment. When using the Service, you agree not to:</p>
+        <ul>
+          <li>Cheat, exploit bugs, or use automated tools, bots, or scripts to manipulate scores, leaderboards, or gameplay</li>
+          <li>Reverse engineer, decompile, or attempt to extract the source code, word lists, or data of the Service, except where permitted by law</li>
+          <li>Interfere with, disrupt, or place undue load on our servers or infrastructure</li>
+          <li>Use the Service for any unlawful purpose or in violation of these Terms</li>
+        </ul>
+      </div>
+
+      <div class="prose-section">
+        <h2>Accounts</h2>
+        <p>
+          You can play Octogram without an account, but creating one (via email, Apple Sign In,
+          or Google Sign In) lets you save your stats and appear on leaderboards. You are
+          responsible for activity that occurs under your account. We may suspend or terminate
+          accounts that violate these Terms, including those used for cheating or abuse.
+          You can request deletion of your account at any time by contacting us at
+          <a href="mailto:hello@octogram.app">hello@octogram.app</a>.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>User content and conduct</h2>
+        <p>
+          If you choose a username or submit any content (such as a display name), you must
+          not use content that is offensive, infringing, impersonating, or otherwise
+          objectionable. We reserve the right to remove content or reset usernames that
+          violate these standards, at our discretion.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Intellectual property</h2>
+        <p>
+          The Service, including its design, code, name, logo, and word lists, is owned by
+          Octogram and protected by intellectual property laws. We grant you a limited,
+          personal, non-exclusive, non-transferable, revocable license to use the Service
+          for its intended purpose. These Terms do not transfer any ownership rights to you.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Leaderboards and fair play</h2>
+        <p>
+          Leaderboards and stats are intended to reflect genuine gameplay. We may, at our
+          discretion, adjust, reset, or remove scores and accounts we reasonably believe to
+          be the result of cheating, exploitation, or manipulation, in order to keep the
+          competition fair for everyone.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Disclaimer of warranties</h2>
+        <p>
+          The Service is provided "as is" and "as available" without warranties of any kind,
+          whether express or implied. We do not guarantee that the Service will be
+          uninterrupted, error-free, secure, or that any defects will be corrected. Your use
+          of the Service is at your own risk.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Limitation of liability</h2>
+        <p>
+          To the maximum extent permitted by law, Octogram will not be liable for any
+          indirect, incidental, special, consequential, or punitive damages, or any loss of
+          data, profits, or goodwill, arising from your use of or inability to use the
+          Service. Because the Service is provided free of charge, our total liability to you
+          for any claim relating to the Service is limited to the amount you have paid us,
+          which is zero.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Changes to the Service</h2>
+        <p>
+          We are continually improving Octogram and may add, change, or remove features,
+          modes, or content at any time. We may also suspend or discontinue the Service, in
+          whole or in part, without liability to you.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Changes to these Terms</h2>
+        <p>
+          We may update these Terms from time to time. When we do, we will update the
+          "Last updated" date at the top of this page. Your continued use of the Service
+          after changes are posted constitutes acceptance of the updated Terms.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Privacy</h2>
+        <p>
+          Your use of the Service is also governed by our
+          <a href="/privacy">Privacy Policy</a>, which explains what information we collect
+          and how we use it.
+        </p>
+      </div>
+
+      <div class="prose-section">
+        <h2>Contact</h2>
+        <p>
+          Questions about these Terms? Reach us at <a href="mailto:hello@octogram.app">hello@octogram.app</a>.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">
+      <img src="/icon.png" alt="" width="20" height="20" style="border-radius:5px;display:block;" aria-hidden="true" />
+      Octogram
+    </a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="mailto:hello@octogram.app">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms" aria-current="page">Terms</a>
+      <a href="/support">Support</a>
+    </nav>
+    <span class="footer-copy">&copy; <span id="yr"></span> Octogram</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('updated').textContent = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  }).format(new Date('2026-06-23'));
+</script>
+
+</body>
+</html>

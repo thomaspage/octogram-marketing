@@ -1,8 +1,6 @@
-# Named pages
-/privacy  /privacy/index.html  200
-/terms  /terms/index.html  200
-/support  /support/index.html  200
-/download  /download/index.html  200
+# Named pages are flat .html files at the project root, so Cloudflare Pages
+# serves them at their clean no-slash URL (e.g. /support -> support.html) with
+# a 200 and no trailing-slash redirect. No explicit rewrites needed here.
 
 # Play (Expo web SPA, local-only build). Real files under /play/_expo and
 # /play/assets are served directly by Pages; any other /play route falls back

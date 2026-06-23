@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "npx serve . -l 3000",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "preview": "npx serve . -l 3000",
     "deploy": "npx wrangler pages deploy"
   },
   "devDependencies": {
     "serve": "^14.2.3",
+    "sharp": "^0.35.2",
     "wrangler": "^3.0.0"
   }
 }

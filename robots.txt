@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Cloudflare-injected email-protection links (not real pages) — keep crawlers out.
+Disallow: /cdn-cgi/
+
+Sitemap: https://octogram.app/sitemap.xml
